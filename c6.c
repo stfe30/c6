@@ -1,3 +1,5 @@
+// TEST-File: Zuweisungsfehler
+
 #include <stdio.h>
 
 main() {
