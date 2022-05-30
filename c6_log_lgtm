@@ -1,0 +1,19 @@
+Displaying1alerts, grouped by query.
+1Error
+0Warnings
+0Recommendations
+
+Assignment where comparison was intended
+The '=' operator may have been used accidentally, where '==' was intended.Read moreOpen in query console
+Source root
+/
+c6.c
+1 alert
+
+main() {
+  int x = 5;
+  if(x = 6) {
+Use of '=' where '==' may have been intended.
+    printf("x ist gleich 6\n");
+  }
+

@@ -1,0 +1,19 @@
+user@notebook:~/c6$ splint c6.c
+Splint 3.1.2 --- 20 Feb 2018
+
+c6.c: (in function main)
+c6.c:5:6: Test expression for if is assignment expression: x = 6
+  The condition test is an assignment expression. Probably, you mean to use ==
+  instead of =. If an assignment is intended, add an extra parentheses nesting
+  (e.g., if ((a = b)) ...) to suppress this message. (Use -predassign to
+  inhibit warning)
+c6.c:5:6: Test expression for if not boolean, type int: x = 6
+  Test expression type is not boolean or int. (Use -predboolint to inhibit
+  warning)
+c6.c:8:2: Path with no return in function declared to return int
+  There is a path through a function declared to return a value on which there
+  is no return statement. This means the execution may fall through without
+  returning a meaningful result to the caller. (Use -noret to inhibit warning)
+
+Finished checking --- 3 code warnings
+

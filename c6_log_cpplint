@@ -1,0 +1,6 @@
+user@notebook:~/c6$ cpplint c6.c
+c6.c:0:  No copyright message found.  You should have a line: "Copyright [year] <Copyright Owner>"  [legal/copyright] [5]
+c6.c:5:  Missing space before ( in if(  [whitespace/parens] [5]
+Done processing c6.c
+Total errors found: 2
+

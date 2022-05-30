@@ -1,0 +1,77 @@
+user@notebook:~/c6$ CodeChecker check -b make -o ./reportcc
+[INFO 2022-04-22 13:33] - Starting build...
+[INFO 2022-04-22 13:33] - Using CodeChecker ld-logger.
+gcc -o c6make c6.c
+c6.c:3:1: warning: return type defaults to ‘int’ [-Wimplicit-int]
+    3 | main() {
+      | ^~~~
+[INFO 2022-04-22 13:33] - Build finished successfully.
+[INFO 2022-04-22 13:33] - Enabled checkers:
+clang-tidy: bugprone-assert-side-effect, bugprone-bool-pointer-implicit-conversion, bugprone-copy-constructor-init, bugprone-dangling-handle, bugprone-dynamic-static-initializers, bugprone-fold-init-type, bugprone-forward-declaration-namespace, bugprone-forwarding-reference-overload, bugprone-inaccurate-erase, bugprone-incorrect-roundings, bugprone-infinite-loop, bugprone-integer-division, bugprone-lambda-function-name, bugprone-macro-repeated-side-effects, bugprone-misplaced-operator-in-strlen-in-alloc, bugprone-misplaced-widening-cast, bugprone-move-forwarding-reference, bugprone-not-null-terminated-result, bugprone-signed-char-misuse, bugprone-sizeof-container, bugprone-sizeof-expression, bugprone-string-constructor, bugprone-string-literal-with-embedded-nul, bugprone-suspicious-enum-usage, bugprone-suspicious-memset-usage, bugprone-suspicious-missing-comma, bugprone-suspicious-semicolon, bugprone-swapped-arguments, bugprone-terminating-continue, bugprone-throw-keyword-missing, bugprone-too-small-loop-variable, bugprone-undefined-memory-manipulation, bugprone-undelegated-constructor, bugprone-unused-raii, bugprone-unused-return-value, bugprone-use-after-move, bugprone-virtual-near-miss, cert-dcl54-cpp, cert-dcl58-cpp, cert-dcl59-cpp, cert-err09-cpp, cert-fio38-c, cert-mem57-cpp, cert-oop11-cpp, cert-oop58-cpp, cert-pos44-c, cppcoreguidelines-special-member-functions, google-build-namespaces, google-global-names-in-headers, misc-definitions-in-headers, misc-misplaced-const, misc-redundant-expression, misc-unconventional-assign-operator, misc-uniqueptr-reset-release, performance-inefficient-algorithm, performance-move-const-arg, performance-move-constructor-init, performance-no-automatic-move, performance-noexcept-move-constructor, performance-trivially-destructible
+clangsa: alpha.cplusplus.PlacementNew, core.CallAndMessage, core.DivideZero, core.DynamicTypePropagation, core.NonNullParamChecker, core.NullDereference, core.StackAddressEscape, core.UndefinedBinaryOperatorResult, core.VLASize, core.uninitialized.ArraySubscript, core.uninitialized.Assign, core.uninitialized.Branch, core.uninitialized.CapturedBlockVariable, core.uninitialized.UndefReturn, cplusplus.InnerPointer, cplusplus.Move, cplusplus.NewDelete, cplusplus.NewDeleteLeaks, cplusplus.PureVirtualCall, deadcode.DeadStores, nullability.NullPassedToNonnull, nullability.NullReturnedFromNonnull, optin.cplusplus.UninitializedObject, optin.cplusplus.VirtualCall, optin.portability.UnixAPI, security.FloatLoopCounter, security.insecureAPI.UncheckedReturn, security.insecureAPI.getpw, security.insecureAPI.gets, security.insecureAPI.mkstemp, security.insecureAPI.mktemp, security.insecureAPI.rand, security.insecureAPI.vfork, unix.API, unix.Malloc, unix.MallocSizeof, unix.MismatchedDeallocator, unix.Vfork, unix.cstring.BadSizeArg, unix.cstring.NullArg, valist.CopyToSelf, valist.Uninitialized, valist.Unterminated
+[INFO 2022-04-22 13:33] - Starting static analysis ...
+[INFO 2022-04-22 13:33] - [1/2] clang-tidy analyzed c6.c successfully.
+[INFO 2022-04-22 13:33] - [2/2] clangsa analyzed c6.c successfully.
+[INFO 2022-04-22 13:33] - ----==== Summary ====----
+[INFO 2022-04-22 13:33] - Successfully analyzed
+[INFO 2022-04-22 13:33] -   clang-tidy: 1
+[INFO 2022-04-22 13:33] -   clangsa: 1
+[INFO 2022-04-22 13:33] - Total analyzed compilation commands: 1
+[INFO 2022-04-22 13:33] - ----=================----
+[INFO 2022-04-22 13:33] - Analysis finished.
+[INFO 2022-04-22 13:33] - To view results in the terminal use the "CodeChecker parse" command.
+[INFO 2022-04-22 13:33] - To store results use the "CodeChecker store" command.
+[INFO 2022-04-22 13:33] - See --help and the user guide for further options about parsing and storing the reports.
+[INFO 2022-04-22 13:33] - ----=================----
+[INFO 2022-04-22 13:33] - Analysis length: 0.05561995506286621 sec.
+[MEDIUM] /home/user/c6/c6.c:3:1: type specifier missing, defaults to 'int' [clang-diagnostic-implicit-int]
+main() {
+^
+
+[MEDIUM] /home/user/c6/c6.c:5:8: using the result of an assignment as a condition without parentheses [clang-diagnostic-parentheses]
+  if(x = 6) {
+       ^
+
+Found 2 defect(s) in c6.c
+
+[LOW] /home/user/c6/c6.c:5:6: Although the value stored to 'x' is used in the enclosing expression, the value is never actually read from 'x' [deadcode.DeadStores]
+  if(x = 6) {
+     ^
+
+Found 1 defect(s) in c6.c
+
+
+----==== Severity Statistics ====----
+----------------------------
+Severity | Number of reports
+----------------------------
+MEDIUM   |                 2
+LOW      |                 1
+----------------------------
+----=================----
+
+----==== Checker Statistics ====----
+------------------------------------------------------------
+Checker name                  | Severity | Number of reports
+------------------------------------------------------------
+clang-diagnostic-implicit-int | MEDIUM   |                 1
+clang-diagnostic-parentheses  | MEDIUM   |                 1
+deadcode.DeadStores           | LOW      |                 1
+------------------------------------------------------------
+----=================----
+
+----==== File Statistics ====----
+-----------------------------
+File name | Number of reports
+-----------------------------
+c6.c      |                 3
+-----------------------------
+----=================----
+
+----======== Summary ========----
+---------------------------------------------
+Number of processed analyzer result files | 2
+Number of analyzer reports                | 3
+---------------------------------------------
+----=================----
+
